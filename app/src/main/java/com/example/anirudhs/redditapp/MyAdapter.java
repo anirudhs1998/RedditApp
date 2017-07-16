@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -15,14 +16,14 @@ import java.util.List;
 
 
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
 
 
 
 private List<Listitem> listitems;
     private Context context;
-
-
+    MyDBHandler dbHandler = new MyDBHandler(context,null,null,1);
+    private Listitem listitem;
 
 
     public MyAdapter(List<Listitem> listitems, Context context) {
@@ -43,7 +44,7 @@ private List<Listitem> listitems;
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Listitem listitem = listitems.get(position);
+        listitem = listitems.get(position);
         holder.myText.setText(listitem.getDescr());
         holder.commentsText.setText(listitem.getComm() + " comments");
         Picasso.with(context).load(listitem.getImgurl()).into(holder.myImage);
@@ -56,6 +57,13 @@ private List<Listitem> listitems;
         return listitems.size();
     }
 
+    @Override
+    public void onClick(View v) {
+
+        dbHandler.addReddit(listitem);
+
+
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{

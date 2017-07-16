@@ -3,6 +3,7 @@ package com.example.anirudhs.redditapp;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -59,13 +60,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         loadRecyclerViewData();
+
+
+
+
         new RedditTask().execute(URL_DATA);
 
 
 
 
 
+
+
+
+
     }
+
+
+
 
 
 
